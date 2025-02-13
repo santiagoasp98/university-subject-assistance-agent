@@ -3,7 +3,6 @@
 # ----------------------------------- #
 
 import os
-from pathlib import Path
 from agent.workflow import AgentWorkflow
 from ingestion.document_processor import DocumentProcessor
 from llm.ollama_client import OllamaClient
@@ -11,6 +10,7 @@ from llm.ollama_client import OllamaClient
 # ----------------------------------- #
 # Main function
 # ----------------------------------- #
+
 
 def main():
     print('Welcome to the University Subject Assistant!')
@@ -22,7 +22,8 @@ def main():
         if subject.lower() == 'exit':
             break
 
-        print('Please provide the path to your PDF files (comma-separated if multiple):')
+        print('Please provide the path to your PDF files (comma-separated '
+              'if multiple):')
         pdf_paths = input('PDF paths: ').strip().split(',')
         pdf_paths = [path.strip() for path in pdf_paths]
 
@@ -48,7 +49,8 @@ def main():
             knowledge_base = doc_processor.process_documents(valid_paths)
 
             # Start Q&A session
-            print('\nDocuments processed! You can now ask questions about the subject.')
+            print('\nDocuments processed! You can now ask questions about '
+                  'the subject.')
             print('\nType \'quit\' to end this session.')
 
             while True:
@@ -67,6 +69,7 @@ def main():
         except Exception as e:
             print(f'An error occurred: {str(e)}')
             continue
+
 
 if __name__ == '__main__':
     main()

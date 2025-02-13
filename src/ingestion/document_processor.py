@@ -3,6 +3,7 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.core.node_parser import SimpleNodeParser
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
+
 class DocumentProcessor:
     def __init__(self, llm_client):
         self.llm_client = llm_client
@@ -30,7 +31,7 @@ class DocumentProcessor:
 
             # Create a node parser
             node_parser = SimpleNodeParser.from_defaults()
-        
+
             # Parse documents into nodes
             nodes = []
             for doc in documents:
@@ -40,10 +41,10 @@ class DocumentProcessor:
             # Create index from nodes
             index = VectorStoreIndex(nodes)
             return index
-        
+
         except Exception as e:
             raise Exception(f'Error processing documents: {str(e)}')
-        
+
     def cleanup(self):
         '''Remove all temporary files'''
         for file in self.temp_dir.glob('*.pdf'):

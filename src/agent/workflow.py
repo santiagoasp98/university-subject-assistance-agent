@@ -1,6 +1,7 @@
 from llama_index.core import VectorStoreIndex
 from llama_index.core.schema import QueryBundle
 
+
 class AgentWorkflow:
     def __init__(self, llm_client):
         self.llm_client = llm_client
@@ -15,4 +16,5 @@ class AgentWorkflow:
 
             return str(response)
         except Exception as e:
-            return f'Sorry, I encountered an error while processing your question: {str(e)}'
+            return 'Sorry, I encountered an error while processing your '\
+                   f'question: {str(e)}'

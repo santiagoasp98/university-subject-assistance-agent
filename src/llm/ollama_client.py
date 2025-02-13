@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from llama_index.llms.ollama import Ollama
 from llama_index.core import Settings
 
+
 class OllamaClient:
     def __init__(self):
         load_dotenv()
@@ -15,6 +16,6 @@ class OllamaClient:
             base_url=self.base_url,
             temperature=0.7,
             request_timeout=60.0)
-        
+
         # Configure global settings
         Settings.llm = self.llm
