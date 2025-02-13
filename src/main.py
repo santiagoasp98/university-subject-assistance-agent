@@ -43,10 +43,8 @@ def main():
             # Initialize components
             llm_client = OllamaClient()
             doc_processor = DocumentProcessor(llm_client)
-            agent = AgentWorkflow(llm_client)
-
-            # Process documents
             knowledge_base = doc_processor.process_documents(valid_paths)
+            agent = AgentWorkflow(llm_client, knowledge_base)
 
             # Start Q&A session
             print('\nDocuments processed! You can now ask questions about '
@@ -59,7 +57,7 @@ def main():
                 if question.lower() == 'quit':
                     break
 
-                response = agent.get_response(question, knowledge_base)
+                response = agent.get_response(question)
                 print('\nAssistant:', response)
 
             # Cleanup

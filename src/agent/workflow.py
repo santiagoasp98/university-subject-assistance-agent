@@ -3,16 +3,15 @@ from llama_index.core.schema import QueryBundle
 
 
 class AgentWorkflow:
-    def __init__(self, llm_client):
+    def __init__(self, llm_client, knowledge_base: VectorStoreIndex):
         self.llm_client = llm_client
+        # Create a query engine
+        self.query_engine = knowledge_base.as_query_engine()
 
-    def get_response(self, question: str, knowledge_base: VectorStoreIndex):
+    def get_response(self, question: str):
         try:
-            # Create a query engine
-            query_engine = knowledge_base.as_query_engine()
-
             # Get the response
-            response = query_engine.query(QueryBundle(question))
+            response = self.query_engine.query(QueryBundle(question))
 
             return str(response)
         except Exception as e:
